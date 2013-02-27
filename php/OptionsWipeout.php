@@ -31,6 +31,8 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 			'ajaxEndpoint' => admin_url('admin-ajax.php', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
 			'wpAjaxAction' => $this->wp_ajax_action,
 			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'yes' => admin_url('images/yes.png', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'no' => admin_url('images/no.png', isset($_SERVER['HTTPS']) ? 'https' : 'http')
 		);
 		wp_localize_script('mg_wp_options_wipeout_js', 'mgWpOptionsWipeoutParams', $params);
 	}
