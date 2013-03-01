@@ -39,21 +39,15 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 	
 	function on_ajax_delete() {
 		trigger_error($_REQUEST['option_name']);
-		//delete_option($_REQUEST['option_name']);
-		die();
+
+		$ok = 
+			//true
+			false
+			//delete_option($_REQUEST['option_name'])
+		;
 		
-		header('Content-Type: application/json');
-		$rsp = new StdClass; // HTTP response body
-		
-		if ($result === 0) {
-			header("HTTP/1.0 400 Bad Request");// see plugganle.php
-		} 
-		/* else if (is_wp_error($result)) {
-			header("HTTP/1.0 400 Bad Request");// see plugganle.php
-			$rsp->errMsgs = $result->get_error_messages();
-		} */
-		
-		echo json_encode($rsp);
+		if (!$ok)
+			header("HTTP/1.0 503 Service Unavailable");
 		
 		die();
 	}
