@@ -15,7 +15,6 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 		$this->add_action('load-options.php', 'inject_js');
 			
 		$this->add_action("wp_ajax_{$this->wp_ajax_action}", 'on_ajax_delete');
-		//nopriv
 	}
 	
 	function inject_js() {
