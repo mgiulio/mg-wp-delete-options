@@ -5,6 +5,7 @@ require_once 'OptionsWipeoutBase.php';
 class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 
 	private $wp_ajax_action = 'mg_wp_options_wipeout';
+	private $nonce_action_string = 'mg_wp_options_wipeout_delete';
 
 	function __construct() {
 		parent::__construct(array());
@@ -31,14 +32,17 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 			'wpAjaxAction' => $this->wp_ajax_action,
 			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
 			'yes' => admin_url('images/yes.png', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
-			'no' => admin_url('images/no.png', isset($_SERVER['HTTPS']) ? 'https' : 'http')
+			'no' => admin_url('images/no.png', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'nonce' => wp_create_nonce($this->nonce_action_string)
 		);
 		wp_localize_script('mg_wp_options_wipeout_js', 'mgWpOptionsWipeoutParams', $params);
 	}
 	
 	function on_ajax_delete() {
-		trigger_error($_REQUEST['option_name']);
-
+		//current_user_can
+		
+		check_ajax_referer($this->nonce_action_string);
+		
 		$ok = 
 			//true
 			false
