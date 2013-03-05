@@ -22,7 +22,7 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 		$wp_admin_bar->add_menu(array(
 			'id'    => 'mg_wp_options_wipeout',
 			'title' => 'WP Options',
-			'href' => admin_url('options.php', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'href' => admin_url('options.php'),
 			'parent' => 'top-secondary'
 			)
 		);
@@ -38,11 +38,11 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 		);
 		
 		$params = array(
-			'ajaxEndpoint' => admin_url('admin-ajax.php', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'ajaxEndpoint' => admin_url('admin-ajax.php'),
 			'wpAjaxAction' => $this->wp_ajax_action,
-			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
-			'yes' => admin_url('images/yes.png', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
-			'no' => admin_url('images/no.png', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif'),
+			'yes' => admin_url('images/yes.png'),
+			'no' => admin_url('images/no.png'),
 			'nonce' => wp_create_nonce($this->nonce_action_string)
 		);
 		wp_localize_script('mg_wp_options_wipeout_js', 'mgWpOptionsWipeoutParams', $params);
