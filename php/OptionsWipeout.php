@@ -13,9 +13,19 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 		if (!is_admin())
 			return;
 			
+		$this->add_action('admin_bar_menu', 'on_admin_bar_menu');
 		$this->add_action('load-options.php', 'inject_js');
-			
 		$this->add_action("wp_ajax_{$this->wp_ajax_action}", 'on_ajax_delete');
+	}
+	
+	function on_admin_bar_menu($wp_admin_bar) {
+		$wp_admin_bar->add_menu(array(
+			'id'    => 'mg_wp_options_wipeout',
+			'title' => 'WP Options',
+			'href' => admin_url('options.php', isset($_SERVER['HTTPS']) ? 'https' : 'http'),
+			'parent' => 'top-secondary'
+			)
+		);
 	}
 	
 	function inject_js() {
