@@ -39,14 +39,10 @@ class mgOptionsWipeout extends mgOptionsWipeoutBase  {
 	}
 	
 	function on_ajax_delete() {
-		//current_user_can
-		
-		check_ajax_referer($this->nonce_action_string);
-		
 		$ok = 
-			//true
-			false
-			//delete_option($_REQUEST['option_name'])
+			current_user_can('manage_options') &&
+			check_ajax_referer($this->nonce_action_string, '_wpnonce', false) &&
+			delete_option($_REQUEST['option_name'])
 		;
 		
 		if (!$ok)
