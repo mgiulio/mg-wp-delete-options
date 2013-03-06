@@ -27,8 +27,4 @@ class mgOptionsWipeoutBase {
 		add_action($wp_action_string, array($this, $method), $priority, $accepted_args);
 	}
 	
-	protected function log($msg) {
-		trigger_error(__CLASS__ . ": $msg");
-	}
-	
 }
