@@ -34,8 +34,10 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 	}
 	
 	function inject_js() {
+		$js_handle = $this->plugin_prefix . 'js';
+		
 		wp_enqueue_script(
-			'mg_wp_options_wipeout_js', 
+			$js_handle,
 			"{$this->url['js']}script.js",
 			array('jquery'), 
 			'', 
@@ -50,7 +52,7 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 			'no' => admin_url('images/no.png'),
 			'nonce' => wp_create_nonce($this->nonce_action_string)
 		);
-		wp_localize_script('mg_wp_options_wipeout_js', 'mgWpOptionsWipeoutParams', $params);
+		wp_localize_script($js_handle, $this->plugin_prefix . 'args', $params);
 	}
 	
 	function on_ajax_delete() {
