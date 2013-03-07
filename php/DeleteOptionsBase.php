@@ -1,6 +1,6 @@
 <?php
 
-class mgOptionsWipeoutBase {
+class mgDeleteOptionsBase {
 
 	protected $url;
 	protected $path;

@@ -1,8 +1,8 @@
 <?php
 
-require_once 'OptionsWipeoutBase.php';
+require_once 'DeleteOptionsBase.php';
 
-class mgOptionsWipeout extends mgOptionsWipeoutBase  {
+class mgDeleteOptions extends mgDeleteOptionsBase  {
 
 	private $plugin_prefix;
 	private $wp_ajax_action;
