@@ -8,13 +8,13 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 	private $nonce_action_string;
 
 	function __construct() {
+		if (!is_admin())
+			return;
+			
 		parent::__construct(array());
 		
 		$this->wp_ajax_action = $this->plugin_prefix . 'delete';
 		$this->nonce_action_string = $this->plugin_prefix . 'delete';
-		
-		if (!is_admin())
-			return;
 			
 		$this->add_action('admin_bar_menu', 'on_admin_bar_menu');
 		$this->add_action('load-options.php', 'inject_js');
