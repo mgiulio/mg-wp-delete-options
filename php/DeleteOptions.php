@@ -4,14 +4,12 @@ require_once 'DeleteOptionsBase.php';
 
 class mgDeleteOptions extends mgDeleteOptionsBase  {
 
-	private $plugin_prefix;
 	private $wp_ajax_action;
 	private $nonce_action_string;
 
 	function __construct() {
 		parent::__construct(array());
 		
-		$this->plugin_prefix = strtolower(__CLASS__/*get_class() is fine too*/) . '_';
 		$this->wp_ajax_action = $this->plugin_prefix . 'delete';
 		$this->nonce_action_string = $this->plugin_prefix . 'delete';
 		

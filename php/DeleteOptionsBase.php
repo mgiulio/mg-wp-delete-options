@@ -2,10 +2,13 @@
 
 class mgDeleteOptionsBase {
 
+	protected $plugin_prefix;
 	protected $url;
 	protected $path;
 
 	function __construct($cfg) {
+		$this->plugin_prefix = strtolower(get_class($this)) . '_';
+		
 		$this->setup_paths_and_urls();
 	}
 	
