@@ -46,8 +46,8 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 			'ajaxEndpoint' => admin_url('admin-ajax.php'),
 			'wpAjaxAction' => $this->wp_ajax_action,
 			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif'),
-			'yes' => admin_url('images/yes.png'),
-			'no' => admin_url('images/no.png'),
+			'yesBtnUrl' => admin_url('images/yes.png'),
+			'noBtnUrl' => admin_url('images/no.png'),
 			'nonce' => wp_create_nonce($this->nonce_action_string)
 		);
 		wp_localize_script($js_handle, $this->plugin_prefix . 'args', $params);
