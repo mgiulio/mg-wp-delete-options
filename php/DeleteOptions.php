@@ -23,7 +23,7 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 	
 	function on_admin_bar_menu($wp_admin_bar) {
 		$wp_admin_bar->add_menu(array(
-			'id'    => 'mg_wp_options_wipeout',
+			'id'    => 'mg_wp_delete_options_hidden_page',
 			'title' => 'WP Options',
 			'href' => admin_url('options.php'),
 			'parent' => 'top-secondary'
