@@ -57,7 +57,7 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 		$ok = 
 			current_user_can('manage_options') &&
 			check_ajax_referer($this->nonce_action_string, '_wpnonce', false) &&
-			delete_option($_REQUEST['option_name'])
+			delete_option($_POST['option_name'])
 		;
 		
 		if (!$ok)
