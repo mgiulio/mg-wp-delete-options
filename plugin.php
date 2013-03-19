@@ -3,7 +3,7 @@
 /*
 Plugin Name: mg WP Delete Options
 Plugin URI: http://mgiulio.altervista.org
-Description: Add an Ajax delete action to the 'hidden' WP Options page(/wp-admin/options.php)
+Description: A WordPress plugin to delete with Ajax the options in the 'hidden' WP Options page(/wp-admin/options.php)
 Version: 0.1
 Author: mgiulio (Giulio Mainardi)
 Author URI: http://mgiulio.altervista.org
