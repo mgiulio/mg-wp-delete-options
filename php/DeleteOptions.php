@@ -61,9 +61,9 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 		;
 		
 		if (!$ok)
-			header("HTTP/1.0 503 Service Unavailable");
-		
-		die();
+			wp_send_json_error();
+		else
+			wp_send_json_success();
 	}
 	
 }
