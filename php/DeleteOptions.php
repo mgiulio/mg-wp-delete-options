@@ -8,17 +8,39 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 	private $nonce_action_string;
 
 	function __construct() {
-		if (!is_admin())
-			return;
+		/* if (!is_admin() || !current_user_can('manage_options'))
+			return; */
 			
 		parent::__construct(array());
 		
+		/* if (!is_admin())
+			return; */
+			
+		$this->add_action('admin_init', 'init');
+		
+		/*
 		$this->wp_ajax_action = $this->plugin_prefix . 'delete';
 		$this->nonce_action_string = $this->plugin_prefix . 'delete';
 			
 		$this->add_action('admin_bar_menu', 'on_admin_bar_menu');
 		$this->add_action('load-options.php', 'inject_js');
 		$this->add_action("wp_ajax_{$this->wp_ajax_action}", 'on_ajax_delete');
+		*/
+	}
+	
+	function init() {
+		if (!current_user_can('manage_options'))
+			return;
+			
+		$this->wp_ajax_action = $this->plugin_prefix . 'delete';
+		$this->nonce_action_string = $this->plugin_prefix . 'delete';
+			
+		if ($this->is_ajax_request($this->wp_ajax_action)) 
+			$this->add_action("wp_ajax_{$this->wp_ajax_action}", 'on_ajax_delete');
+		else {
+			$this->add_action('admin_bar_menu', 'on_admin_bar_menu');
+			$this->add_action('load-options.php', 'inject_js');
+		}
 	}
 	
 	function on_admin_bar_menu($wp_admin_bar) {
