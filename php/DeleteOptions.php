@@ -29,15 +29,6 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 		}
 	}
 	
-	protected function is_ajax_request($action) {
-		return
-			defined('DOING_AJAX' ) && 
-			DOING_AJAX &&
-			!empty($_REQUEST['action']) &&
-			$_REQUEST['action'] === $action
-		;
-	}
-	
 	function on_admin_bar_menu($wp_admin_bar) {
 		$wp_admin_bar->add_menu(array(
 			'id'    => 'mg_wp_delete_options_hidden_page',

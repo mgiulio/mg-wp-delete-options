@@ -30,4 +30,13 @@ class mgDeleteOptionsBase {
 		add_action($wp_action_string, array($this, $method), $priority, $accepted_args);
 	}
 	
+	protected function is_ajax_request($action) {
+		return
+			defined('DOING_AJAX' ) && 
+			DOING_AJAX &&
+			!empty($_REQUEST['action']) &&
+			$_REQUEST['action'] === $action
+		;
+	}
+	
 }
