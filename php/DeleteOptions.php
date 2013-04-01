@@ -40,25 +40,14 @@ class mgDeleteOptions extends mgDeleteOptionsBase  {
 	}
 	
 	function inject_js() {
-		$js_handle = $this->plugin_prefix . 'js';
-		
-		wp_enqueue_script(
-			$js_handle,
-			"{$this->url['js']}script.js",
-			array('jquery'), 
-			'', 
-			true
-		);
-		
-		$params = array(
+		parent::inject_js('script', array(
 			'ajaxEndpoint' => admin_url('admin-ajax.php'),
 			'wpAjaxAction' => $this->wp_ajax_action,
 			'ajaxSpinnerUrl' => admin_url('images/wpspin_light.gif'),
 			'yesBtnUrl' => admin_url('images/yes.png'),
 			'noBtnUrl' => admin_url('images/no.png'),
 			'nonce' => wp_create_nonce($this->nonce_action_string)
-		);
-		wp_localize_script($js_handle, $this->plugin_prefix . 'args', $params);
+		));
 	}
 	
 	function on_ajax_delete() {

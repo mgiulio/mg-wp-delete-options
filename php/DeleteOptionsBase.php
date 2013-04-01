@@ -39,4 +39,19 @@ class mgDeleteOptionsBase {
 		;
 	}
 	
+	protected function inject_js($script, $params = array()) {
+		$js_handle = $this->plugin_prefix . $script . '_js';
+		
+		wp_enqueue_script(
+			$js_handle,
+			"{$this->url['js']}$script.js",
+			array('jquery'), 
+			'', 
+			true
+		);
+		
+		if (!empty($params))
+			wp_localize_script($js_handle, $this->plugin_prefix . 'args', $params);
+	}
+	
 }
