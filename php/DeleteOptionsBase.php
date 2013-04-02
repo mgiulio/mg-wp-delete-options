@@ -3,27 +3,9 @@
 class mgDeleteOptionsBase {
 
 	protected $plugin_prefix;
-	protected $url;
-	protected $path;
 
 	function __construct($cfg) {
 		$this->plugin_prefix = strtolower(get_class($this)) . '_';
-		
-		$this->setup_paths_and_urls();
-	}
-	
-	protected function setup_paths_and_urls() {
-		$d = dirname(__FILE__);
-		$pdu = plugin_dir_url($d);
-		$pdp = plugin_dir_path($d);
-		
-		$this->url = array(
-			'plugin' => $pdu,
-			'js' => "{$pdu}js/"
-		);
-		$this->path = array(
-			'plugin' => $pdp
-		);
 	}
 	
 	protected function add_action($wp_action_string, $method, $priority = 10, $accepted_args = 1) {
@@ -42,9 +24,10 @@ class mgDeleteOptionsBase {
 	protected function inject_js($script, $params = array()) {
 		$js_handle = $this->plugin_prefix . $script . '_js';
 		
+		require_once 'FileSystem.php';
 		wp_enqueue_script(
 			$js_handle,
-			"{$this->url['js']}$script.js",
+			mgFileSystem::get_instance()->get_js_url($script),
 			array('jquery'), 
 			'', 
 			true
